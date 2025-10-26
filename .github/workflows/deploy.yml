@@ -39,9 +39,7 @@ jobs:
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
 
-      # Optional: run tests or linting after build
-      - name: Super-Linter
-        uses: super-linter/super-linter@b92721f792f381cedc002ecdbb9847a15ece5bb8
+     
         env:  
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: true
