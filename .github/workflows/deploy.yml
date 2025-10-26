@@ -4,6 +4,8 @@ on:
   # Trigger the workflow when pushing or opening a pull request on main
   push:
     branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 env:
   REGISTRY: ghcr.io
