@@ -44,12 +44,10 @@ services:
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - N8N_HOST=${DOMAIN_NAME}
       - N8N_PORT=5678
-      - N8N_PROTOCOL=http
       - N8N_RUNNERS_ENABLED=true
       - NODE_ENV=development
       - NODE_FUNCTION_ALLOW_BUILTIN=*
-      - NODE_FUNCTION_ALLOW_EXTERNAL=playwright
-      - WEBHOOK_URL=http://${DOMAIN_NAME}/
+      - NODE_FUNCTION_ALLOW_EXTERNAL=*
       - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
       - TZ=${GENERIC_TIMEZONE}
     ipc: host
@@ -58,22 +56,6 @@ services:
       - ./local-files:/files
     networks:
       - n8n-playwright
-  
-  playwright:
-    image: mcr.microsoft.com/playwright:v1.56.1-noble
-    environment:
-      - workdir=/home/pwuser
-      - user=pwuser
-    volumes:
-      - test-report: ./test-report/${date}
-    networks:
-      - n8n-playwright
-    command: >
-      bash -c "npx -y playwright@1.56.1 run-server --port 3000 --host 0.0.0.0"
-
-
-    
-
 
 volumes:
   n8n_data:
